@@ -1,0 +1,19 @@
+<div class="container">
+  <h2 *ngIf="hotels && hotels.length > 0">{{title}}</h2>
+
+  <button class="btn btn-primary" (click)="toggleIsNewBadge()">
+    afficher nouveau
+  </button>
+
+  <div class="card" style="width: 18rem;" *ngFor="let hotel of hotels">
+    <img class="card-img-top" [src]="hotel.imageUrl" [title]="hotel.HotelName" [alt]="hotel.HotelName">
+    <div class="card-body">
+      <h5 class="card-title">{{hotel.HotelName}}</h5>
+      <p class="card-text">{{hotel.description}}</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <span class="bg bg-pill bg-info" *ngIf="showBadge == true">Nouveau</span>
+    </div>
+
+  </div>
+
+</div>
