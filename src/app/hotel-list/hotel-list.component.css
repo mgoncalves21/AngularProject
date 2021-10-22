@@ -1,0 +1,8 @@
+.card {
+  width: 18rem;
+  margin-right: 5px;
+  margin-bottom: 10px
+}
+#textFilter{
+  font-style: italic;
+}

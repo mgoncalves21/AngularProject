@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid" >
   <h2 *ngIf="hotels && hotels.length > 0">{{title}}</h2>
 
   <button class="btn btn-primary d-flex" (click)="toggleIsNewBadge()">
@@ -13,18 +13,33 @@
 
   <hr>
 
-  <div class="card" style="width: 18rem;" *ngFor="let hotel of hotels">
+  <div class="my-2">
+    <div class="row">
+      <div>
+        <span *ngIf="hotelFilter != 'Type a filter' && hotelFilter != '' ">Filtre actuel : </span>
+        <b *ngIf="hotelFilter != 'Type a filter'">{{hotelFilter}} </b>
+      </div>
+      <div class="col-md-8 form-group">
+        <input id="textFilter" type="text" class="form-control" [(ngModel)] ="hotelFilter">
+
+      </div>
+    </div>
+  </div>
+
+  <div class="card d-inline-block" *ngFor="let hotel of filteredHotels"> <!--style="width: 18rem; margin-right: 5px; margin-bottom: 10px"-->
     <img class="card-img-top"
          [src]="hotel.imageUrl"
-         [title]="hotel.HotelName"
+         [title]="hotel.HotelName | uppercase"
          [alt]="hotel.HotelName">
     <div class="card-body">
-      <h5 class="card-title">{{hotel.HotelName}}</h5>
+      <h5 class="card-title">{{hotel.HotelName | uppercase}}</h5>
       <p class="card-text">{{hotel.description}}</p>
+      <h5 class="mi-currency-franc">{{hotel.price | currency: 'EUR':'symbol': '1.2-2' : 'fr'}}</h5>
       <a href="#" class="btn btn-primary">Go somewhere</a>
-      <span class="bg bg-pill bg-info" *ngIf="showBadge == true">Nouveau</span>
+      <span class="badge bg-secondary d-inline-flex" style="margin-left: 5px" *ngIf="showBadge == true">Nouveau</span>
     </div>
 
   </div>
 
 </div>
+
